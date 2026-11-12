@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaidSure 1-Click Pay Demo</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; padding: 40px 20px; display: flex; justify-content: center; }
+    .card { background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); max-width: 400px; width: 100%; border: 1px solid #e2e8f0; }
+    .price { font-size: 32px; font-weight: 800; color: #0f172a; margin: 12px 0 24px; }
+    .btn { background: #2563eb; color: white; width: 100%; padding: 14px; border: none; border-radius: 6px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.2s; }
+    .btn:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div style="font-size: 12px; color: #64748b; font-weight: 600; text-transform: uppercase;">Sample Store Checkout</div>
+    <h2 style="margin: 8px 0 0; font-size: 20px;">Premium Oversized Tee</h2>
+    <div class="price">₹499.00</div>
+
+    <!-- 1-Click Checkout: Calls your backend /buy endpoint -->
+    <button class="btn" onclick="checkout()">Pay via UPI (Zero Fees) ⚡</button>
+  </div>
+
+  <script>
+    async function checkout() {
+      // 1. Call your own store backend which initializes PaidSure with your secret PSM key
+      const res = await fetch("/buy", { method: "POST" });
+      const data = await res.json();
+
+      // 2. Redirect customer to the hosted PaidSure checkout page (Flipkart style)
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      }
+    }
+  </script>
+</body>
+</html>
