@@ -18,6 +18,7 @@
 **[⚡ Features](#-why-paidsure)** &nbsp;·&nbsp;
 **[📦 Installation](#-installation)** &nbsp;·&nbsp;
 **[🚀 3-Minute Quickstart](#-3-minute-quickstart)** &nbsp;·&nbsp;
+**[🤖 AI Agent Protocol (AGENT.md)](./AGENT.md)** &nbsp;·&nbsp;
 **[📡 Webhooks](#-handling-webhooks)** &nbsp;·&nbsp;
 **[💻 Multi-Language Support](#-other-languages-python-curl-php)** &nbsp;·&nbsp;
 **[📱 How It Works for Buyers](#-the-buyer-experience)** &nbsp;·&nbsp;
