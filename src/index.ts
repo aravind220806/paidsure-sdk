@@ -33,8 +33,13 @@ export interface OrderResponse {
 export interface OrderStatusDetails {
   ref: string;
   status: "PENDING" | "PAID" | "EXPIRED" | "FAILED";
-  amount: string;
+  amount?: string;
   amountPaise: number;
+  baseAmountPaise: number;
+  extraPaise: number;
+  payeeName: string;
+  storeName: string;
+  vpa: string;
   paidAt: string | null;
   utr: string | null;
   confirmedSource: string | null;
@@ -91,7 +96,12 @@ export class PaidSure {
       throw new Error(data.error || `Failed to fetch order: HTTP ${response.status}`);
     }
 
-    return data.order as OrderStatusDetails;
+    const order = data.order;
+    if (order && !order.amount && typeof order.amountPaise === "number") {
+      order.amount = (order.amountPaise / 100).toFixed(2);
+    }
+
+    return order as OrderStatusDetails;
   }
 
   /**
