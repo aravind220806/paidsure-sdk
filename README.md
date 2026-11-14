@@ -28,6 +28,31 @@
 
 ---
 
+## 🔄 How the Gateway Operates (Standard Flow)
+
+PaidSure mirrors the standard developer flow you already know from gateways like Razorpay, with one critical advantage: **funds deposit directly to your bank account with 0% platform deductions**.
+
+```
+[Customer]                [Your Server]               [PaidSure Gateway]
+    │                           │                             │
+    ├── STEP 1: Proceeds to pay │                             │
+    │──────────────────────────>│                             │
+    │                           ├── STEP 2: Fires orders API ─>│
+    │                           │   (createOrder with psm_...)│
+    │                           │<─ STEP 3: Order ref returned─┤
+    │                           │   (statusUrl & fingerprint) │
+    │<─ STEP 4: Checkout URL ───┤                             │
+    │                           │                             │
+    ├── STEP 5: Opens Checkout & selects UPI App (GPay/PhonePe/QR)
+    │   (Direct UPI Authorization directly to your Bank VPA)  │
+    │                           │                             │
+    │                           │<─ STEP 6: Webhook (order.paid)
+    │                           │   (HMAC signature + Bank UTR)
+    │<─ STEP 7: Payment captured & confirmed in real-time ────┤
+```
+
+---
+
 ## ⚡ Why PaidSure?
 
 PaidSure is a **zero-fee UPI payment confirmation gateway** designed for Indian businesses, online stores, creators, and developers.
